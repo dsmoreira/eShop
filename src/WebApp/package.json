@@ -1,0 +1,12 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "description": "WebApp frontend for eShop",
+  "scripts": {
+    "install-deps": "npm install"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "@popperjs/core": "^2.11.6"
+  }
+}

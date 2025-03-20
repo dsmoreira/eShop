@@ -18,6 +18,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,5 +54,13 @@
   <ItemGroup>
     <Compile Include="..\Shared\MigrateDbContextExtensions.cs" Link="Extensions\MigrateDbContextExtensions.cs" />
     <Compile Include="..\Shared\ActivityExtensions.cs" Link="Extensions\ActivityExtensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\bootstrap\" />
+    <Folder Include="wwwroot\js\bootstrap\" />
+    <Folder Include="wwwroot\js\jquery-validate\" />
+    <Folder Include="wwwroot\js\jquery-validation-unobtrusive\" />
+    <Folder Include="wwwroot\js\jquery\" />
   </ItemGroup>
 </Project>
