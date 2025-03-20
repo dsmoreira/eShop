@@ -46,9 +46,9 @@
             Title="MAP"
             ContentTemplate="{DataTemplate views:MapView}"
             Icon="{StaticResource MapIconImageSource}"
-            IsVisible="{OnPlatform Android=True,
-                                   iOS=True,
-                                   MacCatalyst=True,
+            IsVisible="{OnPlatform Android=False,
+                                   iOS=False,
+                                   MacCatalyst=False,
                                    Default=False}"
             Route="Map" />
         <ShellContent
