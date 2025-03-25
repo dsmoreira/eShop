@@ -1,0 +1,31 @@
+<div class="catalog">
+  <app-catalog-search [brandId]="brandId" [itemTypeId]="itemTypeId"></app-catalog-search>
+
+  <div *ngIf="!catalogResult" class="text-center my-5">
+    <p>Carregando...</p>
+  </div>
+
+  <div *ngIf="catalogResult">
+    <div class="catalog-items">
+      <div class="row">
+        <div *ngFor="let item of catalogResult.data" class="col-md-4 mb-4">
+          <app-catalog-item [item]="item"></app-catalog-item>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-links d-flex justify-content-center mt-4">
+      <nav aria-label="Navegação de páginas">
+        <ul class="pagination">
+          <li *ngFor="let pageIndex of getVisiblePageIndexes()" 
+              class="page-item" 
+              [class.active]="pageIndex === page">
+            <a class="page-link" href="javascript:void(0)" (click)="navigateToPage(pageIndex)">
+              {{ pageIndex }}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="catalog-filters mb-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Marcas</div>
+        <div class="card-body">
+          <div class="filters-list">
+            <button 
+              *ngFor="let brand of brands" 
+              class="btn btn-sm"
+              [class.btn-primary]="isBrandSelected(brand.id)"
+              [class.btn-outline-secondary]="!isBrandSelected(brand.id)"
+              (click)="filterByBrand(brand.id)">
+              {{ brand.brand }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Categorias</div>
+        <div class="card-body">
+          <div class="filters-list">
+            <button 
+              *ngFor="let type of types" 
+              class="btn btn-sm"
+              [class.btn-primary]="isTypeSelected(type.id)"
+              [class.btn-outline-secondary]="!isTypeSelected(type.id)"
+              (click)="filterByType(type.id)">
+              {{ type.type }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-3" *ngIf="brandId || itemTypeId">
+    <button class="btn btn-outline-danger" (click)="clearFilters()">Limpar filtros</button>
+  </div>
+</div>

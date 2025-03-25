@@ -31,6 +31,29 @@ internal static class Extensions
     }
 
     /// <summary>
+    /// Adds the Angular web app to the distributed application.
+    /// </summary>
+    public static IResourceBuilder<ExecutableResource> AddAngularWebApp(this IDistributedApplicationBuilder builder,
+        string name, int port = 4201)
+    {
+        // Create an executable resource for the Angular app
+        var angularApp = builder.AddExecutable(
+            name: name,
+            command: "npm",
+            workingDirectory: "src/web-app/e-shop-web",
+            args: new[] { "run", "start:aspire" });
+        
+        // Add HTTP endpoint
+        angularApp.WithEndpoint(
+            port: port,
+            scheme: "http",
+            name: "angular-web-http"
+        );
+
+        return angularApp;
+    }
+
+    /// <summary>
     /// Configures eShop projects to use OpenAI for text embedding and chat.
     /// </summary>
     public static IDistributedApplicationBuilder AddOpenAI(this IDistributedApplicationBuilder builder,
@@ -45,7 +68,7 @@ internal static class Extensions
         // "ConnectionStrings": {
         //   "openai": "Key=<API Key>" (to use https://api.openai.com/)
         //     -or-
-        //   "openai": "Endpoint=https://<name>.openai.azure.com/" (to use Azure OpenAI)
+        //   "openai": "Endpoint=https://<n>.openai.azure.com/" (to use Azure OpenAI)
         // }
         IResourceBuilder<IResourceWithConnectionString> openAI;
         if (builder.Configuration.GetConnectionString(openAIName) is not null)

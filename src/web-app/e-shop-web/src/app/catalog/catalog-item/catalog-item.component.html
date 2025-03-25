@@ -1,0 +1,11 @@
+<div class="catalog-item">
+  <div class="catalog-product" (click)="navigateToDetail()">
+    <div class="catalog-product-image">
+      <img [src]="getProductImageUrl()" [alt]="item.name">
+    </div>
+    <div class="catalog-product-content">
+      <span class="name">{{ item.name }}</span>
+      <span class="price">${{ item.price.toFixed(2) }}</span>
+    </div>
+  </div>
+</div>

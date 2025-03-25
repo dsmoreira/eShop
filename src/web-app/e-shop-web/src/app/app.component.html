@@ -1,0 +1,45 @@
+<div class="app-container">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" [routerLink]="['/']">AdventureWorks</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/']">Catálogo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/cart']">Carrinho</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-header-title">Ready for a new adventure?</h1>
+        <p class="page-header-subtitle">Start the season with the latest in clothing and equipment.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-4">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="bg-dark text-white py-4 mt-auto">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p>&copy; 2024 AdventureWorks</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p>eShop Microservices</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,44 @@
+<div class="catalog-detail">
+  <div *ngIf="!item" class="text-center my-5">
+    <p>Carregando...</p>
+  </div>
+
+  <div *ngIf="item" class="row">
+    <div class="col-md-6">
+      <div class="product-image">
+        <img [src]="getProductImageUrl()" [alt]="item.name" class="img-fluid">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="product-info">
+        <h1 class="product-title">{{ item.name }}</h1>
+        <p class="product-brand">Marca: {{ item.catalogBrand }}</p>
+        <p class="product-type">Categoria: {{ item.catalogType }}</p>
+        <p class="product-price">${{ item.price.toFixed(2) }}</p>
+        <p class="product-description">{{ item.description }}</p>
+        
+        <div class="inventory-status mb-3">
+          <p *ngIf="item.availableStock > 0" class="text-success">
+            Em estoque: {{ item.availableStock }} disponíveis
+          </p>
+          <p *ngIf="item.availableStock <= 0" class="text-danger">
+            Fora de estoque
+          </p>
+        </div>
+
+        <div class="quantity-control mb-3" *ngIf="item.availableStock > 0">
+          <button class="btn btn-outline-secondary" (click)="decrementQuantity()">-</button>
+          <span class="quantity-value mx-3">{{ quantity }}</span>
+          <button class="btn btn-outline-secondary" (click)="incrementQuantity()">+</button>
+        </div>
+        
+        <button 
+          class="btn btn-primary btn-lg" 
+          [disabled]="item.availableStock <= 0"
+          (click)="addToCart()">
+          Adicionar ao Carrinho
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

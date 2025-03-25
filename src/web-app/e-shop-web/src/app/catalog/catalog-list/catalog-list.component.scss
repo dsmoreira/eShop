@@ -1,0 +1,18 @@
+.catalog {
+  margin-top: 1.5rem;
+}
+
+.catalog-items {
+  margin-top: 2rem;
+}
+
+.page-links {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.page-links .page-item.active .page-link {
+  background-color: #212529;
+  border-color: #212529;
+}
