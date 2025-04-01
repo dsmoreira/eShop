@@ -34,21 +34,12 @@ internal static class Extensions
     /// Adds the Angular web app to the distributed application.
     /// </summary>
     public static IResourceBuilder<ExecutableResource> AddAngularWebApp(this IDistributedApplicationBuilder builder,
-        string name, int port = 4201)
+        string name, int port = 4200)
     {
-        // Create an executable resource for the Angular app
-        var angularApp = builder.AddExecutable(
-            name: name,
-            command: "npm",
-            workingDirectory: "src/web-app/e-shop-web",
-            args: new[] { "run", "start:aspire" });
-        
-        // Add HTTP endpoint
-        angularApp.WithEndpoint(
-            port: port,
-            scheme: "http",
-            name: "angular-web-http"
-        );
+        var angularApp = builder.AddNpmApp(name, "../web-app/e-shop-web")
+            .WithHttpEndpoint(env: "PORT")
+            .WithExternalHttpEndpoints()
+            .PublishAsDockerFile();
 
         return angularApp;
     }

@@ -76,7 +76,7 @@ var webApp = builder.AddProject<Projects.WebApp>("webapp", launchProfileName)
     .WithEnvironment("IdentityUrl", identityEndpoint);
 
 // Angular App
-var angularApp = builder.AddAngularWebApp("angular-webapp", 4201)
+var angularApp = builder.AddAngularWebApp("angular-webapp", 4200)
     .WithEnvironment("API_URL", catalogApi.GetEndpoint("http"))
     .WithEnvironment("BASKET_API_URL", basketApi.GetEndpoint("http"))
     .WithEnvironment("ORDERING_API_URL", orderingApi.GetEndpoint("http"))
