@@ -39,6 +39,8 @@ internal static class Extensions
         var angularApp = builder.AddNpmApp(name, "../web-app/e-shop-web")
             .WithHttpEndpoint(env: "PORT")
             .WithExternalHttpEndpoints()
+            .WithEnvironment("NODE_ENV", "development")
+            .WithEnvironment("ASPIRE_ENABLED", "true")
             .PublishAsDockerFile();
 
         return angularApp;

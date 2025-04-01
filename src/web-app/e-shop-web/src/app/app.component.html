@@ -12,10 +12,13 @@
               <a class="nav-link" [routerLink]="['/']">Catálogo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/cart']">Carrinho</a>
+              <a class="nav-link" [routerLink]="['/cart']">
+                Carrinho
+                <span class="badge bg-primary" *ngIf="itemCount > 0">{{ itemCount }}</span>
+              </a>
             </li>
           </ul>
-    </div>
+        </div>
       </div>
     </nav>
     <div class="page-header">
@@ -28,7 +31,7 @@
 
   <main class="container my-4">
     <router-outlet></router-outlet>
-</main>
+  </main>
 
   <footer class="bg-dark text-white py-4 mt-auto">
     <div class="container">

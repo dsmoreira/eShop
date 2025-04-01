@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class CatalogService {
   private apiUrl: string;
+  private apiVersion = '2.0';
 
   constructor(private http: HttpClient) {
     // Se a variável de ambiente API_URL estiver definida, use-a como base para a URL da API
@@ -16,11 +17,11 @@ export class CatalogService {
   }
 
   getCatalogItem(id: number): Observable<CatalogItem> {
-    return this.http.get<CatalogItem>(`${this.apiUrl}items/${id}`);
+    return this.http.get<CatalogItem>(`${this.apiUrl}items/${id}?api-version=${this.apiVersion}`);
   }
 
   getCatalogItems(pageIndex: number, pageSize: number, brand?: number, type?: number): Observable<CatalogResult> {
-    let url = `${this.apiUrl}items?pageIndex=${pageIndex}&pageSize=${pageSize}`;
+    let url = `${this.apiUrl}items?pageIndex=${pageIndex}&pageSize=${pageSize}&api-version=${this.apiVersion}`;
     
     if (brand) {
       url += `&brand=${brand}`;
@@ -34,15 +35,19 @@ export class CatalogService {
   }
 
   getBrands(): Observable<CatalogBrand[]> {
-    return this.http.get<CatalogBrand[]>(`${this.apiUrl}catalogBrands`);
+    return this.http.get<CatalogBrand[]>(`${this.apiUrl}catalogBrands?api-version=${this.apiVersion}`);
   }
 
   getTypes(): Observable<CatalogItemType[]> {
-    return this.http.get<CatalogItemType[]>(`${this.apiUrl}catalogTypes`);
+    return this.http.get<CatalogItemType[]>(`${this.apiUrl}catalogTypes?api-version=${this.apiVersion}`);
   }
 
   getCatalogItemsWithSemanticRelevance(page: number, take: number, text: string): Observable<CatalogResult> {
-    const url = `${this.apiUrl}items/withsemanticrelevance?text=${encodeURIComponent(text)}&pageIndex=${page}&pageSize=${take}`;
+    const url = `${this.apiUrl}items/withsemanticrelevance?text=${encodeURIComponent(text)}&pageIndex=${page}&pageSize=${take}&api-version=${this.apiVersion}`;
     return this.http.get<CatalogResult>(url);
+  }
+
+  getProductImageUrl(productId: number): string {
+    return `${this.apiUrl}items/${productId}/pic?api-version=${this.apiVersion}`;
   }
 }

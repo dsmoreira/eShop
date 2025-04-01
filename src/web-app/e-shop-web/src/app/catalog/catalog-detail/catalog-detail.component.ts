@@ -56,6 +56,6 @@ export class CatalogDetailComponent implements OnInit {
   }
 
   getProductImageUrl(): string {
-    return this.item?.pictureUri || '';
+    return this.item ? this.catalogService.getProductImageUrl(this.item.id) : '';
   }
 }

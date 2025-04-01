@@ -7,6 +7,20 @@ public static class Extensions
 {
     public static void AddApplicationServices(this IHostApplicationBuilder builder)
     {
+        // Configuração do CORS para desenvolvimento
+        if (builder.Environment.IsDevelopment())
+        {
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
+        }
+
         // Avoid loading full database config and migrations if startup
         // is being invoked from build-time OpenAPI generation
         if (builder.Environment.IsBuild())

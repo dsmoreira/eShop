@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CatalogItem } from '../../models/catalog.model';
 import { BasketService } from '../../services/basket.service';
+import { CatalogService } from '../../services/catalog.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,6 +17,7 @@ export class CatalogItemComponent {
 
   constructor(
     private basketService: BasketService,
+    private catalogService: CatalogService,
     private router: Router
   ) {}
 
@@ -28,6 +30,6 @@ export class CatalogItemComponent {
   }
 
   getProductImageUrl(): string {
-    return this.item.pictureUri;
+    return this.catalogService.getProductImageUrl(this.item.id);
   }
 }

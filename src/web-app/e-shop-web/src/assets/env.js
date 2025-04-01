@@ -2,10 +2,10 @@
   window.__env = window.__env || {};
   
   // API URLs
-  window.__env.apiUrl = '';
-  window.__env.basketApiUrl = '';
-  window.__env.orderingApiUrl = '';
-  window.__env.identityApiUrl = '';
+  window.__env.apiUrl = 'http://localhost:5222';
+  window.__env.basketApiUrl = 'http://localhost:5221';
+  window.__env.orderingApiUrl = 'http://localhost:5224';
+  window.__env.identityApiUrl = 'https://localhost:5243';
   
-  // Aspire injetará estas variáveis quando iniciado através do Aspire
-})(this); 
+  // Estas variáveis são injetadas pelo Aspire
+})(this);

@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Basket, BasketItem } from '../models/basket.model';
 import { environment } from '../../environments/environment';
+import { CatalogService } from './catalog.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,8 @@ export class BasketService {
   
   basket$ = this.basketSubject.asObservable();
 
-  constructor(private http: HttpClient) { 
-    // Se a variável de ambiente API_URL estiver definida, use-a como base para a URL da API
-    this.apiUrl = environment.apiUrl ? `${environment.apiUrl}/api/basket/` : 'api/basket/';
-    this.loadBasket();
-  }
-
-  private loadBasket(): void {
-    // Em um cenário real, aqui buscaria o carrinho do usuário baseado em algum ID ou token
-    const userId = 'testuser'; // Em uma implementação real, isso viria de um serviço de autenticação
-    this.getBasket(userId).subscribe();
+  constructor(private http: HttpClient, private catalogService: CatalogService) { 
+    this.apiUrl = environment.basketApiUrl ? `${environment.basketApiUrl}/api/basket/` : 'api/basket/';
   }
 
   getBasket(buyerId: string): Observable<Basket> {
